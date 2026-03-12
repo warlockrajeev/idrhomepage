@@ -825,17 +825,46 @@
                 transform: rotate(-45deg) translate(8px, -8px);
             }
 
+            .pipeline-wrapper {
+                padding: 3rem 1.5rem !important;
+            }
+
             .pipeline {
-                flex-direction: column;
-                gap: 2rem;
+                display: grid !important;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 3rem 1.5rem;
+                padding-left: 0;
+                position: relative;
             }
 
             .pipeline::after {
                 display: none;
             }
 
-            .pipeline-item span {
-                margin: 0 auto 1rem;
+            .pipeline-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+                justify-content: flex-start;
+                width: 100%;
+            }
+
+            .pipeline-step {
+                flex: 0 0 55px;
+                width: 55px !important;
+                height: 55px !important;
+                margin: 0 auto !important;
+                z-index: 2;
+            }
+
+            .pipeline-step i {
+                width: 22px !important;
+                height: 22px !important;
+            }
+
+            .pipeline-content h4 {
+                font-size: 1.1rem;
+                margin-bottom: 0.3rem;
             }
         }
     </style>
