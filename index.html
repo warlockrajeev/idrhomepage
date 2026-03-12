@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IDR | Institute of Digital Risk - Advancing Cyber & AI Governance</title>
+    <meta name="description"
+        content="Institute of Digital Risk (IDR) is an industry-led training and deployment institute focused on digital risk, cyber risk, and AI governance.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="fev.png">
+    <!-- Lucide Icons (via CDN for simplicity or I can use inline SVGs) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --primary: #FF6A00;
+            --primary-dark: #E65F00;
+            --black: #000000;
+            --white: #FFFFFF;
+            --gray-100: #F5F5F5;
+            --gray-200: #EEEEEE;
+            --gray-300: #E0E0E0;
+            --gray-800: #212121;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --header-height: 80px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--black);
+            background-color: var(--white);
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        h1,
+        h2,
+        h3,
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--white);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--white);
+            color: var(--black);
+            transform: translateY(-2px);
+        }
+
+        /* Navbar */
+        header {
+            height: var(--header-height);
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            height: 70px;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        nav {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            width: 100%;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+
+        .logo img {
+            height: 45px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            color: var(--black);
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            text-transform: uppercase;
+        }
+
+        .logo-text span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links li {
+            position: relative;
+        }
+
+        .nav-links a {
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--gray-800);
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            grid-column: 3;
+            justify-self: end;
+        }
+
+        .mobile-toggle span {
+            width: 30px;
+            height: 2px;
+            background-color: var(--black);
+            transition: var(--transition);
+        }
+
+        /* Hero Section */
+        #home {
+            height: 100vh;
+            background: linear-gradient(135deg, var(--black) 0%, #1a1a1a 100%);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            color: var(--white);
+            padding-top: var(--header-height);
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            opacity: 0.2;
+            pointer-events: none;
+        }
+
+        .hero-grid {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background-image:
+                linear-gradient(var(--primary) 1px, transparent 1px),
+                linear-gradient(90deg, var(--primary) 1px, transparent 1px);
+            background-size: 60px 60px;
+            transform: perspective(500px) rotateX(60deg) translateY(-20%);
+            z-index: 0;
+            pointer-events: none;
+            animation: grid-move 20s linear infinite;
+        }
+
+        @keyframes grid-move {
+            0% {
+                background-position: 0 0;
+            }
+
+            100% {
+                background-position: 0 60px;
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 800px;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease-out;
+            background: linear-gradient(to right, #ffffff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+        }
+
+        .hero-content p {
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+            max-width: 600px;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1.5rem;
+            animation: fadeInUp 0.8s ease-out 0.4s backwards;
+        }
+
+        /* About Section */
+        .section-padding {
+            padding: 8rem 0;
+        }
+
+        .section-header {
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 40px;
+            height: 4px;
+            background-color: var(--primary);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: var(--gray-800);
+        }
+
+        /* Model/Pillars Section */
+        #model {
+            background-color: var(--gray-100);
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 6rem;
+        }
+
+        .card {
+            background: var(--white);
+            padding: 2.5rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 0;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+            border-color: rgba(255, 106, 0, 0.2);
+        }
+
+        .card:hover::before {
+            height: 100%;
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 106, 0, 0.1);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            margin-bottom: 0.5rem;
+        }
+
+        .card h3 {
+            font-size: 1.6rem;
+            color: var(--black);
+            font-weight: 700;
+        }
+
+        .card p {
+            color: var(--gray-800);
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        /* Visual Pipeline */
+        .pipeline-wrapper {
+            background: linear-gradient(135deg, #000 0%, #111 100%);
+            padding: 5rem 2rem;
+            border-radius: 20px;
+            color: var(--white);
+            text-align: center;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .pipeline {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .pipeline-item {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .pipeline-step {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            transition: var(--transition);
+            position: relative;
+            z-index: 2;
+        }
+
+        .pipeline-item:hover .pipeline-step {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: var(--white);
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(255, 106, 0, 0.4);
+        }
+
+        .pipeline-content h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .pipeline-content p {
+            font-size: 0.9rem;
+            opacity: 0.6;
+        }
+
+        .pipeline::after {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 12%;
+            width: 76%;
+            height: 2px;
+            background: linear-gradient(to right,
+                    rgba(255, 255, 255, 0.1),
+                    var(--primary),
+                    rgba(255, 255, 255, 0.1));
+            z-index: 1;
+        }
+
+        /* Community Section */
+        #community {
+            background-color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .community-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .community-card {
+            background: var(--gray-100);
+            padding: 2rem 2rem;
+            border-radius: 16px;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            text-align: left;
+            border: 1px solid transparent;
+        }
+
+        .community-card:hover {
+            background: var(--white);
+            border-color: var(--primary);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.05);
+            transform: translateY(-5px);
+        }
+
+        .community-card i {
+            width: 50px;
+            height: 50px;
+            background: var(--white);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 1rem;
+        }
+
+        .community-card h4 {
+            font-size: 1.3rem;
+            color: var(--black);
+            font-weight: 700;
+        }
+
+        .community-card p {
+            font-size: 0.95rem;
+            color: var(--gray-800);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .community-bg-shape {
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 106, 0, 0.05) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        /* Contact Section */
+        #contact {
+            background-color: var(--black);
+            color: var(--white);
+        }
+
+        #contact .section-header h2::after {
+            background-color: var(--primary);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 4rem;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 1rem;
+        }
+
+        .contact-form {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 1rem;
+            background-color: #1a1a1a;
+            border: 1px solid #333;
+            color: var(--white);
+            border-radius: 4px;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(180deg, #111111 0%, #000000 100%);
+            color: var(--white);
+            padding: 6rem 0 2rem;
+            border-top: 1px solid rgba(255, 106, 0, 0.2);
+            box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-brand .logo {
+            background: var(--white);
+            padding: 0.4rem 1rem;
+            border-radius: 6px;
+            display: inline-flex;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer-brand .logo-text {
+            color: var(--black);
+        }
+
+        .footer-brand p {
+            opacity: 0.6;
+            font-size: 0.95rem;
+            max-width: 300px;
+            line-height: 1.8;
+        }
+
+        .footer-links h4 {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links ul li a {
+            opacity: 0.6;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .footer-links ul li a:hover {
+            opacity: 1;
+            color: var(--primary);
+            padding-left: 5px;
+        }
+
+        .social-heading {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            transition: var(--transition);
+            color: var(--white);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 106, 0, 0.2);
+        }
+
+        .copyright {
+            text-align: center;
+            opacity: 0.4;
+            font-size: 0.85rem;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 968px) {
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 3rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 968px) {
+            header .container {
+                width: 100% !important;
+                max-width: 100% !important;
+                padding: 0 1rem !important;
+                margin: 0 !important;
+            }
+
+            nav {
+                display: flex !important;
+                justify-content: space-between !important;
+                align-items: center !important;
+                width: 100% !important;
+                height: 100% !important;
+            }
+
+            .container {
+                padding: 0 1.2rem;
+            }
+
+            .about-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: var(--header-height);
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - var(--header-height));
+                background-color: var(--white);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: var(--transition);
+                z-index: 999;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links a {
+                color: var(--black);
+                font-size: 1.5rem;
+            }
+
+            .mobile-toggle {
+                display: flex;
+            }
+
+            .mobile-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(8px, 8px);
+            }
+
+            .mobile-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .mobile-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(8px, -8px);
+            }
+
+            .pipeline {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .pipeline::after {
+                display: none;
+            }
+
+            .pipeline-item span {
+                margin: 0 auto 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#home" class="logo">
+                    <img src="idr.png" alt="IDR Logo"
+                        onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <span class="logo-text" style="display:none;">I<span>D</span>R</span>
+                </a>
+
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#model">Model</a></li>
+                    <li><a href="#community">Community</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+
+                <div class="mobile-toggle" id="mobileToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="home">
+            <div class="hero-bg">
+                <div class="hero-grid"></div>
+            </div>
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Advancing the Future of Digital Risk</h1>
+                    <p>IDR trains and deploys digital risk practitioners through academic collaboration and real-world
+                        industry practice.</p>
+                    <div class="cta-group">
+                        <a href="#model" class="btn btn-primary">Explore Programs</a>
+                        <a href="#contact" class="btn btn-outline">Hire Talent</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section-padding">
+            <div class="container">
+                <div class="section-header">
+                    <h2>About IDR</h2>
+                </div>
+                <div class="about-grid">
+                    <div class="about-text">
+                        <p>IDR is an industry-led training and deployment institute focused on digital risk, cyber risk,
+                            and technology risk in high-consequence environments such as financial services and critical
+                            infrastructure.</p>
+                        <p>The institute bridges academic insight through UK university collaboration with real-world
+                            projects and industry deployment.</p>
+                    </div>
+                    <div class="about-visual">
+                        <img src="about-idr.png" alt="Digital Risk Analysis"
+                            style="width: 100%; height: 400px; object-fit: cover; border-radius: 8px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); border-left: 8px solid var(--primary);">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="model" class="section-padding">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Our Model</h2>
+                </div>
+                <div class="cards-container">
+                    <div class="card">
+                        <div class="card-icon">
+                            <i data-lucide="graduation-cap"></i>
+                        </div>
+                        <h3>Academy</h3>
+                        <p>Training programs and bootcamps for students and professionals in digital and cyber risk.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <i data-lucide="lightbulb"></i>
+                        </div>
+                        <h3>Innovation & Incubation</h3>
+                        <p>Developing intellectual property, future risk models, and AI governance frameworks.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <i data-lucide="shield-check"></i>
+                        </div>
+                        <h3>Advisory Services</h3>
+                        <p>Helping organizations implement security and risk frameworks such as NIST, ISO 27001, and
+                            NIS2.</p>
+                    </div>
+                </div>
+
+                <div class="pipeline-wrapper">
+                    <div class="pipeline">
+                        <div class="pipeline-item">
+                            <div class="pipeline-step"><i data-lucide="book-open"></i></div>
+                            <div class="pipeline-content">
+                                <h4>Train</h4>
+                                <p>Specialized Skillup</p>
+                            </div>
+                        </div>
+                        <div class="pipeline-item">
+                            <div class="pipeline-step"><i data-lucide="users"></i></div>
+                            <div class="pipeline-content">
+                                <h4>Hire</h4>
+                                <p>Industry Matching</p>
+                            </div>
+                        </div>
+                        <div class="pipeline-item">
+                            <div class="pipeline-step"><i data-lucide="rocket"></i></div>
+                            <div class="pipeline-content">
+                                <h4>Innovate</h4>
+                                <p>R&D Solutions</p>
+                            </div>
+                        </div>
+                        <div class="pipeline-item">
+                            <div class="pipeline-step"><i data-lucide="check-circle-2"></i></div>
+                            <div class="pipeline-content">
+                                <h4>Deploy</h4>
+                                <p>Operational Scale</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="community" class="section-padding">
+            <div class="community-bg-shape"></div>
+            <div class="container" style="position: relative; z-index: 1;">
+                <div class="section-header">
+                    <h2>Who We Serve</h2>
+                    <p style="color: var(--gray-800); max-width: 600px; margin-top: 1rem;">IDR is built for the next
+                        generation of digital risk leaders and the industries they protect.</p>
+                </div>
+
+                <div class="community-grid">
+                    <div class="community-card">
+                        <i data-lucide="book-marked"></i>
+                        <h4>Students</h4>
+                        <p>Academic high-flyers looking to bridge the gap between theory and industry-grade risk
+                            management.</p>
+                    </div>
+                    <div class="community-card">
+                        <i data-lucide="award"></i>
+                        <h4>Early-Career Professionals</h4>
+                        <p>Individuals in their first 5 years seeking to pivot or deepen their expertise in AI
+                            governance and cyber risk.</p>
+                    </div>
+                    <div class="community-card">
+                        <i data-lucide="briefcase"></i>
+                        <h4>Industry Practitioners</h4>
+                        <p>Experts in financial services and critical infrastructure upskilling to meet evolving
+                            technological threats.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section-padding">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Join the Network</h2>
+                </div>
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h3>Get in touch</h3>
+                        <p>Have questions about our programs or want to partner with us?</p>
+                        <p style="color: var(--primary); font-weight: 600; margin-top: 1rem;">contact@idr.example</p>
+                    </div>
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" placeholder="contact@idr.example" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" placeholder="How can we help?"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: fit-content;">Submit
+                            Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#home" class="logo-text"
+                        style="font-size: 2rem; margin-bottom: 1.5rem; display: block;"><span>IDR</span></a>
+                    <p>Industry-led training and deployment institute focused on digital risk, cyber risk, and AI
+                        governance in critical environments.</p>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#model">The Model</a></li>
+                        <li><a href="#community">Community</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Resources</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-social">
+                    <h4 class="social-heading">Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+                        <a href="#" aria-label="Twitter"><i data-lucide="twitter"></i></a>
+                        <a href="#" aria-label="Github"><i data-lucide="github"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>&copy; 2026 Institute of Digital Risk. All rights reserved. Advanced AI Governance & Risk Management.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Use Intersection Observer for sticky navbar behavior if needed or just simple window scroll
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navLinks = document.getElementById('navLinks');
+        const links = navLinks.querySelectorAll('a');
+
+        mobileToggle.addEventListener('click', () => {
+            mobileToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when link is clicked
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Smooth scrolling is handled by CSS scroll-behavior: smooth
+        // Adding active class to nav links on scroll
+        const sections = document.querySelectorAll('section');
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            links.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Simple form submission prevention
+        document.querySelector('.contact-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for your message. We will get back to you soon!');
+            e.target.reset();
+        });
+        // Initialize Lucide Icons
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>
